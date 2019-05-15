@@ -11,20 +11,21 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.new(
+        @user = User.create(
             name: params[:name],
             username: params[:username],
             password: params[:password],
-            funds: params[:funds]
+            # funds: params[:funds]
         )
 
-        # if user.save
-        #     token = encode_token(user.id)
-
-        # render json: {user: UserSerializer.new(user), token: token}
-        # else
-        #     render json: {errors: user.errors.full_messages}
-        # end
+        if @user.valid?
+            @token = encode_token(@user.id) 
+            render json: {user: UserSerializer.new(@user), token: @token}, 
+            status: :created  
+        else      
+            render json: {error: 'Failed to Create User'}, status:
+            :not_acceptable  
+        end  
     end
 
     def update
