@@ -11,7 +11,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.create(favorites_params)
+    @transaction = Transaction.create(transaction_params)
     render json: @transaction
   end
 

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_210623) do
   create_table "stocks", force: :cascade do |t|
     t.string "name"
     t.string "ticker"
-    t.integer "price"
+    t.float "price"
     t.string "headline"
     t.string "image"
     t.string "article"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_210623) do
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "stock_id"
-    t.integer "stock_price"
+    t.float "stock_price"
     t.integer "quantity"
     t.string "date_transaction"
     t.datetime "created_at", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_05_14_210623) do
     t.string "name"
     t.string "username"
     t.string "password_digest"
-    t.integer "funds"
+    t.float "funds"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
