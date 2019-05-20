@@ -15,7 +15,7 @@ class UsersController < ApplicationController
             name: params[:name],
             username: params[:username],
             password: params[:password],
-            # funds: params[:funds]
+            funds: params[:funds]
         )
 
         if @user.valid?
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
+        @user.update(funds: params[:funds])
         render json: @user
     end
 

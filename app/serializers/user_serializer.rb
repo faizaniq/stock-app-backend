@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :username, :watchlists
+  attributes :id, :name, :username, :watchlists, :funds, :investments
 
 
   def watchlists
@@ -12,5 +12,13 @@ class UserSerializer < ActiveModel::Serializer
     end 
   end 
 
-
+  def investments 
+    self.object.transactions.map do |s| 
+      {
+        company: s.stock.name,
+        ticker: s.stock.ticker,
+        price: s.stock.price
+      }
+    end 
+  end 
 end

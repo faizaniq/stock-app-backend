@@ -15,6 +15,12 @@ class StocksController < ApplicationController
     render json: @stock
   end
 
+  def create_stock_and_transaction
+    @stock = Stock.create(stock_params)
+    @transaction = Transaction.create(stock: @stock, user_id: params[:user_id])
+    render json: @transaction
+  end
+
   def update
     @stock = Stock.find(params[:id])
     render json: @stock
