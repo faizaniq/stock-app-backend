@@ -17,6 +17,7 @@ class TransactionsController < ApplicationController
 
   def update
     @transaction = Transaction.find(params[:id])
+    @transaction.update(current_quantity: params[:quantity])
     render json: @transaction
   end
 
@@ -28,7 +29,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:user_id, :stock_id, :stock_price, :quantity, :date_transaction)
+    params.require(:transaction).permit(:user_id, :stock_id, :stock_price, :current_quantity, :original_quantity, :date_transaction, :purchase, :sell)
   end
 
 
