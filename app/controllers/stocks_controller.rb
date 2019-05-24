@@ -15,15 +15,15 @@ class StocksController < ApplicationController
     render json: @stock
   end
 
-  def buy_stock_and_transaction
+  def buytransaction
     @stock = Stock.create(stock_params)
     @transaction = Transaction.create(stock: @stock, user_id: params[:user_id], original_quantity: params[:original_quantity], current_quantity: params[:current_quantity], purchase: true, sell: false)
     render json: @transaction
   end
 
-  def sell_stock_and_transaction
+  def selltransaction
     @stock = Stock.create(stock_params)
-    @transaction = Transaction.create(stock: @stock, user_id: params[:user_id],current_quantity: params[:current_quantity], purchase: false, sell: true)
+    @transaction = Transaction.create(stock: @stock, user_id: params[:user_id], current_quantity: params[:current_quantity], purchase: false, sell: true)
     currentuser = User.find(params[:user_id])
     investmentarray = []
     total = 0

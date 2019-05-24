@@ -15,8 +15,8 @@ class UsersController < ApplicationController
             name: params[:name],
             username: params[:username],
             password: params[:password],
-            funds: params[:funds],
-            original_funds: params[:original_funds]
+            funds: 0,
+            original_funds: 0
         )
 
         if @user.valid?
